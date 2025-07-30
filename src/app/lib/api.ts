@@ -48,7 +48,7 @@ export interface CreateDesireRequest {
 
 // API Service Functions
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL;
+const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000/api';
 
 /**
  * Register a new user

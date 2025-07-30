@@ -28,7 +28,8 @@ export async function testRegistration() {
  * Check if the API is reachable
  */
 export async function checkAPIHealth() {
-  const API_URL = process.env.NEXT_PUBLIC_API_URL;
+  const API_URL =
+    process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000/api';
 
   try {
     const response = await fetch(`${API_URL}/health`, {
