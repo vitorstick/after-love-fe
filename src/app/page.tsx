@@ -1,6 +1,7 @@
 import AfterglowSection from './components/AfterglowSection';
 import DesiresSection from './components/DesiresSection';
 import HeroSection from './components/HeroSection';
+import RealTalkSection from './components/RealTalkSection';
 
 export default function Home() {
   return (
@@ -8,6 +9,7 @@ export default function Home() {
       <HeroSection />
       <DesiresSection />
       <AfterglowSection />
+      <RealTalkSection />
     </div>
   );
 }
