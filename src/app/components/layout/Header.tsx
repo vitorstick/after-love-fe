@@ -10,10 +10,10 @@ export default function Header() {
         <div className='flex-shrink-0'>
           <Link
             href='/'
-            className='flex items-center gap-3 text-[1.75rem] font-normal text-pink-400 no-underline italic'
-            style={{ fontFamily: "'Crimson Text', serif" }}
+            className='flex items-center gap-3 text-[1.75rem] font-normal no-underline italic font-crimson'
+            style={{ color: 'var(--primary)' }}
           >
-            <span className='text-pink-400'>♡</span>
+            <span style={{ color: 'var(--primary)' }}>♡</span>
             AfterLoving
           </Link>
         </div>

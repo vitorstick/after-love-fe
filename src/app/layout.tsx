@@ -1,5 +1,10 @@
 import type { Metadata } from 'next';
-import { Geist, Geist_Mono } from 'next/font/google';
+import {
+  Crimson_Text,
+  Geist,
+  Geist_Mono,
+  Instrument_Sans,
+} from 'next/font/google';
 import Footer from './components/layout/Footer';
 import Header from './components/layout/Header';
 import './globals.css';
@@ -12,6 +17,19 @@ const geistSans = Geist({
 const geistMono = Geist_Mono({
   variable: '--font-geist-mono',
   subsets: ['latin'],
+});
+
+const crimsonText = Crimson_Text({
+  variable: '--font-crimson-text',
+  subsets: ['latin'],
+  weight: ['400', '600', '700'],
+  style: ['normal', 'italic'],
+});
+
+const instrumentSans = Instrument_Sans({
+  variable: '--font-instrument-sans',
+  subsets: ['latin'],
+  weight: ['400', '500', '600', '700'],
 });
 
 export const metadata: Metadata = {
@@ -28,7 +46,7 @@ export default function RootLayout({
   return (
     <html lang='en'>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-gray-50 min-h-screen flex flex-col`}
+        className={`${geistSans.variable} ${geistMono.variable} ${crimsonText.variable} ${instrumentSans.variable} antialiased bg-gray-50 min-h-screen flex flex-col`}
       >
         <Header />
         <main className='flex-1'>{children}</main>
