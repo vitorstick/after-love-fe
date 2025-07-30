@@ -10,9 +10,12 @@ export default function ConnectionSuccess({
   onContinueToApp,
 }: ConnectionSuccessProps) {
   return (
-    <div className='connection-success-container animate-in' id='connection-success'>
+    <div
+      className='connection-success-container animate-in'
+      id='connection-success'
+    >
       <div className='success-header text-center mb-8'>
-        <div 
+        <div
           className='success-icon mb-6 inline-flex items-center justify-center w-24 h-24 rounded-full'
           style={{ backgroundColor: 'rgba(34, 197, 94, 0.1)' }}
         >
@@ -31,23 +34,20 @@ export default function ConnectionSuccess({
             <circle cx='12' cy='12' r='10'></circle>
           </svg>
         </div>
-        
+
         <h2
           className='font-crimson text-3xl font-medium mb-4 italic'
           style={{ color: 'var(--text-dark)' }}
         >
           You&apos;re Connected!
         </h2>
-        <p 
+        <p
           className='text-lg leading-relaxed mb-2'
           style={{ color: 'var(--text-light)' }}
         >
           Welcome to AfterLove! You&apos;re now connected with
         </p>
-        <p 
-          className='text-xl font-medium'
-          style={{ color: 'var(--primary)' }}
-        >
+        <p className='text-xl font-medium' style={{ color: 'var(--primary)' }}>
           {partnerName}
         </p>
       </div>
@@ -55,31 +55,32 @@ export default function ConnectionSuccess({
       <div className='success-content mb-8'>
         <div className='celebration-card bg-gradient-to-br from-pink-50 to-purple-50 rounded-xl p-6 mb-6'>
           <div className='celebration-text text-center'>
-            <h3 
+            <h3
               className='font-medium text-lg mb-3'
               style={{ color: 'var(--text-dark)' }}
             >
               🎉 Your journey together begins now!
             </h3>
-            <p 
+            <p
               className='text-base leading-relaxed'
               style={{ color: 'var(--text-light)' }}
             >
-              You can now explore deeper intimacy, share reflections, and build stronger connections together.
+              You can now explore deeper intimacy, share reflections, and build
+              stronger connections together.
             </p>
           </div>
         </div>
 
         <div className='features-preview space-y-4'>
-          <h4 
+          <h4
             className='font-medium text-base mb-3'
             style={{ color: 'var(--text-dark)' }}
           >
             What&apos;s available to you now:
           </h4>
-          
+
           <div className='feature-item flex items-start gap-3'>
-            <div 
+            <div
               className='feature-icon flex-shrink-0 w-8 h-8 rounded-lg flex items-center justify-center'
               style={{ backgroundColor: 'rgba(232, 227, 245, 0.5)' }}
             >
@@ -106,23 +107,20 @@ export default function ConnectionSuccess({
               </svg>
             </div>
             <div>
-              <h5 
+              <h5
                 className='font-medium text-sm mb-1'
                 style={{ color: 'var(--text-dark)' }}
               >
                 Afterglow Reflections
               </h5>
-              <p 
-                className='text-sm'
-                style={{ color: 'var(--text-light)' }}
-              >
+              <p className='text-sm' style={{ color: 'var(--text-light)' }}>
                 Share thoughtful reflections after intimate moments
               </p>
             </div>
           </div>
 
           <div className='feature-item flex items-start gap-3'>
-            <div 
+            <div
               className='feature-icon flex-shrink-0 w-8 h-8 rounded-lg flex items-center justify-center'
               style={{ backgroundColor: 'rgba(232, 227, 245, 0.5)' }}
             >
@@ -141,23 +139,20 @@ export default function ConnectionSuccess({
               </svg>
             </div>
             <div>
-              <h5 
+              <h5
                 className='font-medium text-sm mb-1'
                 style={{ color: 'var(--text-dark)' }}
               >
                 Desires Exploration
               </h5>
-              <p 
-                className='text-sm'
-                style={{ color: 'var(--text-light)' }}
-              >
+              <p className='text-sm' style={{ color: 'var(--text-light)' }}>
                 Discover and communicate your intimate desires safely
               </p>
             </div>
           </div>
 
           <div className='feature-item flex items-start gap-3'>
-            <div 
+            <div
               className='feature-icon flex-shrink-0 w-8 h-8 rounded-lg flex items-center justify-center'
               style={{ backgroundColor: 'rgba(232, 227, 245, 0.5)' }}
             >
@@ -177,16 +172,13 @@ export default function ConnectionSuccess({
               </svg>
             </div>
             <div>
-              <h5 
+              <h5
                 className='font-medium text-sm mb-1'
                 style={{ color: 'var(--text-dark)' }}
               >
                 Real Talk Check-ins
               </h5>
-              <p 
-                className='text-sm'
-                style={{ color: 'var(--text-light)' }}
-              >
+              <p className='text-sm' style={{ color: 'var(--text-light)' }}>
                 Weekly conversations to strengthen your bond
               </p>
             </div>
@@ -207,7 +199,8 @@ export default function ConnectionSuccess({
         className='success-footer mt-6 text-center text-sm'
         style={{ color: 'var(--text-light)' }}
       >
-        {partnerName} has been notified that you&apos;ve joined. Welcome to your journey together! 💕
+        {partnerName} has been notified that you&apos;ve joined. Welcome to your
+        journey together! 💕
       </div>
     </div>
   );

@@ -38,9 +38,12 @@ export default function AcceptInvitationForm({
   };
 
   return (
-    <div className='accept-invitation-container animate-in' id='accept-invitation'>
+    <div
+      className='accept-invitation-container animate-in'
+      id='accept-invitation'
+    >
       <div className='invitation-header text-center mb-8'>
-        <div 
+        <div
           className='invitation-icon mb-6 inline-flex items-center justify-center w-20 h-20 rounded-full'
           style={{ backgroundColor: 'rgba(232, 227, 245, 0.3)' }}
         >
@@ -61,33 +64,34 @@ export default function AcceptInvitationForm({
             <path d='M16 3.13a4 4 0 0 1 0 7.75'></path>
           </svg>
         </div>
-        
+
         <h2
           className='font-crimson text-3xl font-medium mb-4 italic'
           style={{ color: 'var(--text-dark)' }}
         >
           Join {inviterName} on AfterLove
         </h2>
-        <p 
+        <p
           className='text-lg leading-relaxed'
           style={{ color: 'var(--text-light)' }}
         >
-          {inviterName} has invited you to explore deeper intimacy and connection together.
+          {inviterName} has invited you to explore deeper intimacy and
+          connection together.
         </p>
       </div>
 
       <div className='invitation-benefits mb-8'>
         <div className='benefits-card bg-gradient-to-br from-pink-50 to-purple-50 rounded-xl p-6'>
-          <h3 
+          <h3
             className='font-medium text-lg mb-4'
             style={{ color: 'var(--text-dark)' }}
           >
             What you&apos;ll experience together:
           </h3>
-          
+
           <div className='benefits-list space-y-3'>
             <div className='benefit-item flex items-start gap-3'>
-              <div 
+              <div
                 className='benefit-icon flex-shrink-0 w-5 h-5 rounded-full flex items-center justify-center mt-1'
                 style={{ backgroundColor: 'var(--primary)' }}
               >
@@ -104,16 +108,13 @@ export default function AcceptInvitationForm({
                   <polyline points='20 6 9 17 4 12'></polyline>
                 </svg>
               </div>
-              <span 
-                className='text-sm'
-                style={{ color: 'var(--text-dark)' }}
-              >
+              <span className='text-sm' style={{ color: 'var(--text-dark)' }}>
                 Private reflections after intimate moments
               </span>
             </div>
 
             <div className='benefit-item flex items-start gap-3'>
-              <div 
+              <div
                 className='benefit-icon flex-shrink-0 w-5 h-5 rounded-full flex items-center justify-center mt-1'
                 style={{ backgroundColor: 'var(--primary)' }}
               >
@@ -130,16 +131,13 @@ export default function AcceptInvitationForm({
                   <polyline points='20 6 9 17 4 12'></polyline>
                 </svg>
               </div>
-              <span 
-                className='text-sm'
-                style={{ color: 'var(--text-dark)' }}
-              >
+              <span className='text-sm' style={{ color: 'var(--text-dark)' }}>
                 Explore desires and deepen emotional connection
               </span>
             </div>
 
             <div className='benefit-item flex items-start gap-3'>
-              <div 
+              <div
                 className='benefit-icon flex-shrink-0 w-5 h-5 rounded-full flex items-center justify-center mt-1'
                 style={{ backgroundColor: 'var(--primary)' }}
               >
@@ -156,10 +154,7 @@ export default function AcceptInvitationForm({
                   <polyline points='20 6 9 17 4 12'></polyline>
                 </svg>
               </div>
-              <span 
-                className='text-sm'
-                style={{ color: 'var(--text-dark)' }}
-              >
+              <span className='text-sm' style={{ color: 'var(--text-dark)' }}>
                 Shared experiences visible only when both complete
               </span>
             </div>
@@ -167,10 +162,7 @@ export default function AcceptInvitationForm({
         </div>
       </div>
 
-      <form
-        onSubmit={handleSubmit}
-        className='invitation-form space-y-4'
-      >
+      <form onSubmit={handleSubmit} className='invitation-form space-y-4'>
         <div className='form-group'>
           <label
             className='form-label block text-sm font-medium mb-2'

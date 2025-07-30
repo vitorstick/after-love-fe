@@ -1,12 +1,12 @@
 'use client';
 
-import { useState, useEffect } from 'react';
-import { useRouter } from 'next/navigation';
 import AcceptInvitationForm from '@/app/components/AcceptInvitationForm';
 import ConnectionSuccess from '@/app/components/ConnectionSuccess';
+import { useRouter } from 'next/navigation';
+import { use, useEffect, useState } from 'react';
 
 interface InvitePageProps {
-  params: { token: string };
+  params: Promise<{ token: string }>;
 }
 
 interface InvitationData {
@@ -19,8 +19,11 @@ interface InvitationData {
 type InviteStep = 'loading' | 'form' | 'success' | 'error';
 
 export default function InvitePage({ params }: InvitePageProps) {
+  const resolvedParams = use(params);
   const [currentStep, setCurrentStep] = useState<InviteStep>('loading');
-  const [invitationData, setInvitationData] = useState<InvitationData | null>(null);
+  const [invitationData, setInvitationData] = useState<InvitationData | null>(
+    null
+  );
   const [isSubmitting, setIsSubmitting] = useState(false);
   const router = useRouter();
 
@@ -30,23 +33,23 @@ export default function InvitePage({ params }: InvitePageProps) {
     const validateToken = async () => {
       try {
         // Simulate API call delay
-        await new Promise(resolve => setTimeout(resolve, 1000));
-        
+        await new Promise((resolve) => setTimeout(resolve, 1000));
+
         // Mock validation - in real app, this would be an API call
-        if (params.token === 'invalid') {
+        if (resolvedParams.token === 'invalid') {
           setInvitationData({
             inviterName: '',
             isValid: false,
             isExpired: false,
-            error: 'Invalid invitation link'
+            error: 'Invalid invitation link',
           });
           setCurrentStep('error');
-        } else if (params.token === 'expired') {
+        } else if (resolvedParams.token === 'expired') {
           setInvitationData({
             inviterName: '',
             isValid: false,
             isExpired: true,
-            error: 'This invitation has expired'
+            error: 'This invitation has expired',
           });
           setCurrentStep('error');
         } else {
@@ -64,14 +67,14 @@ export default function InvitePage({ params }: InvitePageProps) {
           inviterName: '',
           isValid: false,
           isExpired: false,
-          error: 'Failed to validate invitation'
+          error: 'Failed to validate invitation',
         });
         setCurrentStep('error');
       }
     };
 
     validateToken();
-  }, [params.token]);
+  }, [resolvedParams.token]);
 
   const handleAcceptInvitation = async (userData: {
     firstName: string;
@@ -79,17 +82,17 @@ export default function InvitePage({ params }: InvitePageProps) {
     password: string;
   }) => {
     setIsSubmitting(true);
-    
+
     try {
       // TODO: API call to create account and accept invitation
       console.log('Accepting invitation:', {
-        token: params.token,
+        token: resolvedParams.token,
         userData,
       });
-      
+
       // Simulate API call
-      await new Promise(resolve => setTimeout(resolve, 2000));
-      
+      await new Promise((resolve) => setTimeout(resolve, 2000));
+
       // Success - move to connection success
       setCurrentStep('success');
     } catch (error) {
@@ -141,7 +144,7 @@ export default function InvitePage({ params }: InvitePageProps) {
       <div className='invite-page min-h-screen bg-gray-50 flex items-center justify-center py-12 px-4'>
         <div className='max-w-md w-full bg-white rounded-2xl shadow-lg p-8'>
           <div className='error-container text-center'>
-            <div 
+            <div
               className='error-icon mb-6 inline-flex items-center justify-center w-20 h-20 rounded-full'
               style={{ backgroundColor: 'rgba(239, 68, 68, 0.1)' }}
             >
@@ -161,15 +164,17 @@ export default function InvitePage({ params }: InvitePageProps) {
                 <line x1='9' y1='9' x2='15' y2='15'></line>
               </svg>
             </div>
-            
+
             <h2
               className='font-crimson text-2xl font-medium mb-4 italic'
               style={{ color: 'var(--text-dark)' }}
             >
-              {invitationData?.isExpired ? 'Invitation Expired' : 'Invalid Invitation'}
+              {invitationData?.isExpired
+                ? 'Invitation Expired'
+                : 'Invalid Invitation'}
             </h2>
-            
-            <p 
+
+            <p
               className='text-base leading-relaxed mb-6'
               style={{ color: 'var(--text-light)' }}
             >
@@ -195,7 +200,7 @@ export default function InvitePage({ params }: InvitePageProps) {
         {currentStep === 'form' && invitationData && (
           <AcceptInvitationForm
             inviterName={invitationData.inviterName}
-            invitationToken={params.token}
+            invitationToken={resolvedParams.token}
             onAcceptInvitation={handleAcceptInvitation}
             isLoading={isSubmitting}
           />
