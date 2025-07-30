@@ -4,7 +4,7 @@ import InvitationSentConfirmation from '@/app/components/InvitationSentConfirmat
 import InvitePartnerPrompt from '@/app/components/InvitePartnerPrompt';
 import SignupForm from '@/app/components/SignupForm';
 import WelcomeScreen from '@/app/components/WelcomeScreen';
-import { useSearchParams } from 'next/navigation';
+import { useSearchParams, useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 
 type OnboardingStep =
@@ -23,6 +23,7 @@ export default function OnboardingPage() {
   const [userData, setUserData] = useState<UserData | null>(null);
   const [partnerEmail, setPartnerEmail] = useState<string>('');
   const searchParams = useSearchParams();
+  const router = useRouter();
 
   useEffect(() => {
     // Try to get user data from URL params first
@@ -58,8 +59,8 @@ export default function OnboardingPage() {
   };
 
   const handleSkipInvitation = () => {
-    // TODO: Navigate to dashboard or complete onboarding
-    console.log('Skip invitation clicked - go to dashboard');
+    // Navigate to dashboard
+    router.push('/dashboard');
   };
 
   const handleResendInvitation = () => {
@@ -68,8 +69,8 @@ export default function OnboardingPage() {
   };
 
   const handleContinueToApp = () => {
-    // TODO: Navigate to main app/dashboard
-    console.log('Continue to app clicked');
+    // Navigate to dashboard
+    router.push('/dashboard');
   };
 
   return (
