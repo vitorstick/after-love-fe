@@ -4,9 +4,13 @@ import { useState } from 'react';
 
 interface SignupFormProps {
   onSwitchToLogin?: () => void;
+  onSignupSuccess?: (userData: { firstName: string; email: string }) => void;
 }
 
-export default function SignupForm({ onSwitchToLogin }: SignupFormProps) {
+export default function SignupForm({
+  onSwitchToLogin,
+  onSignupSuccess,
+}: SignupFormProps) {
   const [formData, setFormData] = useState({
     firstName: '',
     email: '',
@@ -22,8 +26,16 @@ export default function SignupForm({ onSwitchToLogin }: SignupFormProps) {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // TODO: Handle form submission
+    // TODO: Handle form submission (API call here)
     console.log('Form submitted:', formData);
+
+    // Simulate successful registration and call onSignupSuccess
+    if (onSignupSuccess) {
+      onSignupSuccess({
+        firstName: formData.firstName,
+        email: formData.email,
+      });
+    }
   };
 
   return (

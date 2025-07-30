@@ -1,14 +1,29 @@
 'use client';
 
+import LoginForm from '@/app/components/LoginForm';
+import SignupForm from '@/app/components/SignupForm';
+import { useRouter } from 'next/navigation';
 import { useState } from 'react';
-import LoginForm from '../components/LoginForm';
-import SignupForm from '../components/SignupForm';
 
 export default function LoginPage() {
   const [activeTab, setActiveTab] = useState<'login' | 'signup'>('login');
+  const router = useRouter();
 
   const switchTab = (tab: 'login' | 'signup') => {
     setActiveTab(tab);
+  };
+
+  const handleSignupSuccess = (userData: {
+    firstName: string;
+    email: string;
+  }) => {
+    console.log('User signed up successfully:', userData);
+    // Navigate to onboarding page with user data
+    const params = new URLSearchParams({
+      firstName: userData.firstName,
+      email: userData.email,
+    });
+    router.push(`/onboarding?${params.toString()}`);
   };
 
   return (
@@ -60,7 +75,10 @@ export default function LoginPage() {
           {activeTab === 'login' ? (
             <LoginForm onSwitchToSignup={() => switchTab('signup')} />
           ) : (
-            <SignupForm onSwitchToLogin={() => switchTab('login')} />
+            <SignupForm
+              onSwitchToLogin={() => switchTab('login')}
+              onSignupSuccess={handleSignupSuccess}
+            />
           )}
         </div>
       </div>
