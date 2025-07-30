@@ -1,11 +1,12 @@
 'use client';
 
+import InvitePartnerPrompt from '@/app/components/InvitePartnerPrompt';
 import SignupForm from '@/app/components/SignupForm';
 import WelcomeScreen from '@/app/components/WelcomeScreen';
 import { useSearchParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
 
-type OnboardingStep = 'signup' | 'welcome';
+type OnboardingStep = 'signup' | 'welcome' | 'invite-prompt';
 
 interface UserData {
   firstName: string;
@@ -37,8 +38,18 @@ export default function OnboardingPage() {
   };
 
   const handleWelcomeContinue = () => {
-    // TODO: Navigate to next step (InvitePartnerPrompt)
-    console.log('Welcome continue clicked - next: InvitePartnerPrompt');
+    // Navigate to InvitePartnerPrompt step
+    setCurrentStep('invite-prompt');
+  };
+
+  const handleInvitePartner = () => {
+    // TODO: Navigate to PartnerInviteForm step
+    console.log('Invite partner clicked - next: PartnerInviteForm');
+  };
+
+  const handleSkipInvitation = () => {
+    // TODO: Navigate to dashboard or complete onboarding
+    console.log('Skip invitation clicked - go to dashboard');
   };
 
   return (
@@ -52,6 +63,13 @@ export default function OnboardingPage() {
           <WelcomeScreen
             userName={userData.firstName}
             onContinue={handleWelcomeContinue}
+          />
+        )}
+
+        {currentStep === 'invite-prompt' && (
+          <InvitePartnerPrompt
+            onInvitePartner={handleInvitePartner}
+            onSkipForNow={handleSkipInvitation}
           />
         )}
       </div>
