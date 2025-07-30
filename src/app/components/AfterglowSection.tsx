@@ -1,3 +1,5 @@
+import PhoneFrame from './PhoneFrame';
+
 export default function AfterglowSection() {
   return (
     <div
@@ -11,58 +13,39 @@ export default function AfterglowSection() {
         <div className='category-content reverse grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center'>
           {/* Category Visual - First on desktop (reversed) */}
           <div className='category-visual flex justify-center lg:justify-start order-2 lg:order-1'>
-            <div className='phone-mockup-small relative'>
-              {/* Phone Frame */}
-              <div
-                className='relative w-80 h-[600px] rounded-[3rem] border-8 border-black overflow-hidden'
-                style={{
-                  background: 'linear-gradient(135deg, #1a1a1a 0%, #333 100%)',
-                  boxShadow: '0 25px 60px rgba(0, 0, 0, 0.3)',
-                }}
-              >
-                {/* Phone Screen */}
-                <div
-                  className='phone-screen w-full h-full rounded-[2rem] p-6 flex flex-col'
-                  style={{
-                    background:
-                      'linear-gradient(135deg, var(--pastel-lavender) 0%, var(--pastel-pink) 100%)',
-                  }}
+            <PhoneFrame>
+              {/* Mini App Content */}
+              <div className='mini-app-content flex-1 flex flex-col justify-center'>
+                <h4
+                  className='text-lg font-medium mb-6 text-center'
+                  style={{ color: 'var(--primary)' }}
                 >
-                  {/* Mini App Content */}
-                  <div className='mini-app-content flex-1 flex flex-col justify-center'>
-                    <h4
-                      className='text-lg font-medium mb-6 text-center'
-                      style={{ color: 'var(--primary)' }}
-                    >
-                      Today&apos;s Reflection
-                    </h4>
+                  Today&apos;s Reflection
+                </h4>
 
-                    <p
-                      className='mini-question font-crimson text-xl italic text-center mb-8 leading-relaxed px-4'
-                      style={{ color: 'var(--text-dark)' }}
-                    >
-                      What moment during our intimacy felt most connecting to
-                      you?
-                    </p>
+                <p
+                  className='mini-question font-crimson text-xl italic text-center mb-8 leading-relaxed px-4'
+                  style={{ color: 'var(--text-dark)' }}
+                >
+                  What moment during our intimacy felt most connecting to you?
+                </p>
 
-                    <div className='mini-textarea-container mb-6'>
-                      <textarea
-                        className='mini-textarea w-full p-4 rounded-xl border-2 border-gray-200 bg-white resize-none h-32 text-gray-700'
-                        placeholder='Share your thoughts...'
-                        style={{ fontFamily: 'var(--font-instrument-sans)' }}
-                      />
-                    </div>
+                <div className='mini-textarea-container mb-6'>
+                  <textarea
+                    className='mini-textarea w-full p-4 rounded-xl border-2 border-gray-200 bg-white resize-none h-32 text-gray-700'
+                    placeholder='Share your thoughts...'
+                    style={{ fontFamily: 'var(--font-instrument-sans)' }}
+                  />
+                </div>
 
-                    <div
-                      className='partner-status text-center text-sm italic'
-                      style={{ color: 'var(--text-light)' }}
-                    >
-                      Emma is also reflecting...
-                    </div>
-                  </div>
+                <div
+                  className='partner-status text-center text-sm italic'
+                  style={{ color: 'var(--text-light)' }}
+                >
+                  Emma is also reflecting...
                 </div>
               </div>
-            </div>
+            </PhoneFrame>
           </div>
 
           {/* Category Text - Second on desktop (reversed) */}

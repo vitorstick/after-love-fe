@@ -19,7 +19,7 @@ export default function Header() {
         </div>
 
         {/* Navigation Links - Center */}
-        <div className='hidden md:flex items-center space-x-8'>
+        <div className='hidden md:flex items-center justify-center space-x-8'>
           <Link
             href='/'
             className='text-pink-400 hover:text-pink-500 text-sm font-medium border-b-2 border-pink-400 pb-4'
@@ -62,11 +62,10 @@ export default function Header() {
           >
             Contact
           </Link>
-        </div>
-
-        {/* User Account Icon */}
-        <div className='hidden md:flex items-center'>
-          <Link href='/login' className='text-gray-600 hover:text-gray-900 p-2'>
+          <Link
+            href='/login'
+            className='text-gray-600 hover:text-gray-900 text-sm font-medium pb-4'
+          >
             <svg
               className='w-6 h-6'
               fill='none'
