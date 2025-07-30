@@ -7,6 +7,7 @@ import {
 } from 'next/font/google';
 import Footer from './components/layout/Footer';
 import Header from './components/layout/Header';
+import { AuthProvider } from './context/AuthContext';
 import './globals.css';
 
 const geistSans = Geist({
@@ -48,9 +49,11 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${crimsonText.variable} ${instrumentSans.variable} antialiased min-h-screen flex flex-col`}
       >
-        <Header />
-        <main className='flex-1'>{children}</main>
-        <Footer />
+        <AuthProvider>
+          <Header />
+          <main className='flex-1'>{children}</main>
+          <Footer />
+        </AuthProvider>
       </body>
     </html>
   );

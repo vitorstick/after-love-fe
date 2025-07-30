@@ -1,9 +1,11 @@
 'use client';
 
+import { useRouter } from 'next/navigation';
 import { useState } from 'react';
-import { registerUser, type AuthResponse } from '../lib/api';
+import { useAuth } from '../context/AuthContext';
 
 interface SignupFormProps {
+  onSwitchToLogin?: () => void;
   onSignupSuccess?: (userData: {
     name: string;
     email: string;
@@ -11,7 +13,10 @@ interface SignupFormProps {
   }) => void;
 }
 
-export default function SignupForm({ onSignupSuccess }: SignupFormProps) {
+export default function SignupForm({
+  onSwitchToLogin,
+  onSignupSuccess,
+}: SignupFormProps) {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -20,6 +25,9 @@ export default function SignupForm({ onSignupSuccess }: SignupFormProps) {
 
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+
+  const { signup } = useAuth();
+  const router = useRouter();
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData({
@@ -34,20 +42,18 @@ export default function SignupForm({ onSignupSuccess }: SignupFormProps) {
     setError(null);
 
     try {
-      const response: AuthResponse = await registerUser(formData);
+      await signup(formData);
 
-      // Store the token in localStorage
-      if (typeof window !== 'undefined') {
-        localStorage.setItem('access_token', response.data.access_token);
-      }
-
-      // Call onSignupSuccess with the user data and token
+      // Call onSignupSuccess with the user data and token (if provided)
       if (onSignupSuccess) {
         onSignupSuccess({
-          name: response.data.user.name,
-          email: response.data.user.email,
-          token: response.data.access_token,
+          name: formData.name,
+          email: formData.email,
+          token: '', // Token is now managed by auth context
         });
+      } else {
+        // Default redirect to onboarding or dashboard
+        router.push('/onboarding');
       }
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Registration failed');

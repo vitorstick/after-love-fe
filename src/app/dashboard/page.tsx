@@ -1,7 +1,9 @@
 'use client';
 
 import PartnerStatusCard from '@/app/components/PartnerStatusCard';
-import { useState } from 'react';
+import { useAuth } from '@/app/context/AuthContext';
+import { useRouter } from 'next/navigation';
+import { useEffect, useState } from 'react';
 
 interface UserData {
   firstName: string;
@@ -11,13 +13,40 @@ interface UserData {
 }
 
 export default function DashboardPage() {
-  // Mock user data - in real app, this would come from authentication/API
-  const [userData] = useState<UserData>({
-    firstName: 'Emma',
-    email: 'emma@example.com',
-    hasPartner: false, // Change to true to test connected state
-    partnerName: undefined, // Set to partner name when connected
-  });
+  const { user, isAuthenticated, isLoading } = useAuth();
+  const router = useRouter();
+  const [userData, setUserData] = useState<UserData | null>(null);
+
+  useEffect(() => {
+    if (!isLoading && !isAuthenticated) {
+      // Redirect to login if not authenticated
+      router.push('/login');
+      return;
+    }
+
+    if (user) {
+      // Extract first name from full name
+      const firstName = user.name.split(' ')[0];
+      setUserData({
+        firstName,
+        email: user.email,
+        hasPartner: !!user.coupleId, // User has partner if coupleId exists
+        partnerName: undefined, // TODO: Get partner name from API
+      });
+    }
+  }, [user, isAuthenticated, isLoading, router]);
+
+  if (isLoading) {
+    return (
+      <div className='min-h-screen flex items-center justify-center'>
+        <div className='text-lg'>Loading...</div>
+      </div>
+    );
+  }
+
+  if (!isAuthenticated || !userData) {
+    return null; // Will redirect to login
+  }
 
   const handleInvitePartner = () => {
     // TODO: Navigate to invite flow or open invite modal

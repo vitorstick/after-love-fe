@@ -1,21 +1,33 @@
 'use client';
 
+import { useRouter } from 'next/navigation';
 import { useState } from 'react';
+import { useAuth } from '../context/AuthContext';
 
 interface LoginFormProps {
   onSwitchToSignup: () => void;
+  onLoginSuccess?: () => void;
 }
 
-export default function LoginForm({ onSwitchToSignup }: LoginFormProps) {
+export default function LoginForm({
+  onSwitchToSignup,
+  onLoginSuccess,
+}: LoginFormProps) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [rememberMe, setRememberMe] = useState(false);
   const [errors, setErrors] = useState({ email: '', password: '' });
+  const [isLoading, setIsLoading] = useState(false);
+  const [generalError, setGeneralError] = useState<string | null>(null);
 
-  const handleLogin = (e: React.FormEvent) => {
+  const { login } = useAuth();
+  const router = useRouter();
+
+  const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
     // Reset errors
     setErrors({ email: '', password: '' });
+    setGeneralError(null);
 
     // Basic validation
     const newErrors = { email: '', password: '' };
@@ -27,8 +39,23 @@ export default function LoginForm({ onSwitchToSignup }: LoginFormProps) {
       return;
     }
 
-    // Handle login logic here
-    console.log('Login:', { email, password, rememberMe });
+    setIsLoading(true);
+
+    try {
+      await login({ email, password });
+
+      // Success - call callback or redirect
+      if (onLoginSuccess) {
+        onLoginSuccess();
+      } else {
+        // Default redirect to dashboard
+        router.push('/dashboard');
+      }
+    } catch (error) {
+      setGeneralError(error instanceof Error ? error.message : 'Login failed');
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   const socialLogin = (provider: string) => {
@@ -38,6 +65,15 @@ export default function LoginForm({ onSwitchToSignup }: LoginFormProps) {
   return (
     <div>
       <form onSubmit={handleLogin} className='space-y-6'>
+        {generalError && (
+          <div
+            className='p-3 rounded-lg text-sm'
+            style={{ backgroundColor: '#fee', color: '#d00' }}
+          >
+            {generalError}
+          </div>
+        )}
+
         <div className='form-group'>
           <label
             htmlFor='login-email'
@@ -53,6 +89,7 @@ export default function LoginForm({ onSwitchToSignup }: LoginFormProps) {
             onChange={(e) => setEmail(e.target.value)}
             className='form-input w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-500 focus:border-transparent transition-all duration-200'
             required
+            disabled={isLoading}
           />
           {errors.email && (
             <div className='form-error text-red-500 text-sm mt-1'>
@@ -76,6 +113,7 @@ export default function LoginForm({ onSwitchToSignup }: LoginFormProps) {
             onChange={(e) => setPassword(e.target.value)}
             className='form-input w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-500 focus:border-transparent transition-all duration-200'
             required
+            disabled={isLoading}
           />
           {errors.password && (
             <div className='form-error text-red-500 text-sm mt-1'>
@@ -103,10 +141,11 @@ export default function LoginForm({ onSwitchToSignup }: LoginFormProps) {
 
         <button
           type='submit'
-          className='btn-primary w-full py-3 px-4 rounded-lg text-white font-medium text-lg transition-all duration-200 hover:opacity-90 hover:transform hover:scale-105'
+          className='btn-primary w-full py-3 px-4 rounded-lg text-white font-medium text-lg transition-all duration-200 hover:opacity-90 hover:transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed'
           style={{ backgroundColor: 'var(--primary)' }}
+          disabled={isLoading}
         >
-          Login
+          {isLoading ? 'Logging in...' : 'Login'}
         </button>
       </form>
 
