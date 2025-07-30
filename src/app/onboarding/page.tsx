@@ -4,7 +4,7 @@ import InvitationSentConfirmation from '@/app/components/InvitationSentConfirmat
 import InvitePartnerPrompt from '@/app/components/InvitePartnerPrompt';
 import SignupForm from '@/app/components/SignupForm';
 import WelcomeScreen from '@/app/components/WelcomeScreen';
-import { useSearchParams, useRouter } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
 
 type OnboardingStep =
