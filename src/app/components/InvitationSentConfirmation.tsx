@@ -14,7 +14,7 @@ export default function InvitationSentConfirmation({
   return (
     <div className='invitation-sent-container animate-in' id='invitation-sent'>
       <div className='confirmation-header text-center mb-8'>
-        <div 
+        <div
           className='confirmation-icon mb-6 inline-flex items-center justify-center w-20 h-20 rounded-full'
           style={{ backgroundColor: 'rgba(34, 197, 94, 0.1)' }}
         >
@@ -33,78 +33,66 @@ export default function InvitationSentConfirmation({
             <polyline points='22 4 12 14.01 9 11.01'></polyline>
           </svg>
         </div>
-        
+
         <h2
           className='font-crimson text-3xl font-medium mb-4 italic'
           style={{ color: 'var(--text-dark)' }}
         >
           Invitation Sent!
         </h2>
-        <p 
+        <p
           className='text-lg leading-relaxed mb-2'
           style={{ color: 'var(--text-light)' }}
         >
           We&apos;ve sent an invitation to
         </p>
-        <p 
-          className='text-lg font-medium'
-          style={{ color: 'var(--primary)' }}
-        >
+        <p className='text-lg font-medium' style={{ color: 'var(--primary)' }}>
           {partnerEmail}
         </p>
       </div>
 
       <div className='confirmation-content mb-8'>
         <div className='next-steps-card bg-gray-50 rounded-xl p-6'>
-          <h3 
+          <h3
             className='font-medium text-lg mb-4'
             style={{ color: 'var(--text-dark)' }}
           >
             What happens next?
           </h3>
-          
+
           <div className='steps-list space-y-4'>
             <div className='step-item flex items-start gap-3'>
-              <div 
+              <div
                 className='step-number flex-shrink-0 w-6 h-6 rounded-full flex items-center justify-center text-sm font-medium text-white'
                 style={{ backgroundColor: 'var(--primary)' }}
               >
                 1
               </div>
-              <span 
-                className='text-base'
-                style={{ color: 'var(--text-dark)' }}
-              >
+              <span className='text-base' style={{ color: 'var(--text-dark)' }}>
                 Your partner will receive an email with a unique invitation link
               </span>
             </div>
 
             <div className='step-item flex items-start gap-3'>
-              <div 
+              <div
                 className='step-number flex-shrink-0 w-6 h-6 rounded-full flex items-center justify-center text-sm font-medium text-white'
                 style={{ backgroundColor: 'var(--primary)' }}
               >
                 2
               </div>
-              <span 
-                className='text-base'
-                style={{ color: 'var(--text-dark)' }}
-              >
+              <span className='text-base' style={{ color: 'var(--text-dark)' }}>
                 They&apos;ll create their account and connect with you
               </span>
             </div>
 
             <div className='step-item flex items-start gap-3'>
-              <div 
+              <div
                 className='step-number flex-shrink-0 w-6 h-6 rounded-full flex items-center justify-center text-sm font-medium text-white'
                 style={{ backgroundColor: 'var(--primary)' }}
               >
                 3
               </div>
-              <span 
-                className='text-base'
-                style={{ color: 'var(--text-dark)' }}
-              >
+              <span className='text-base' style={{ color: 'var(--text-dark)' }}>
                 You&apos;ll both be notified when you&apos;re connected
               </span>
             </div>
@@ -134,7 +122,8 @@ export default function InvitationSentConfirmation({
                   Tip: Check your spam folder
                 </p>
                 <p className='text-sm text-blue-700'>
-                  Sometimes invitation emails can end up in spam. Let your partner know to check there if they don&apos;t see it.
+                  Sometimes invitation emails can end up in spam. Let your
+                  partner know to check there if they don&apos;t see it.
                 </p>
               </div>
             </div>
@@ -155,9 +144,9 @@ export default function InvitationSentConfirmation({
         <button
           onClick={onResendInvitation}
           className='btn-secondary w-full py-3 rounded-lg font-medium text-base transition-colors duration-200 border-2 hover:bg-gray-50'
-          style={{ 
-            color: 'var(--text-light)', 
-            borderColor: '#E5E7EB' 
+          style={{
+            color: 'var(--text-light)',
+            borderColor: '#E5E7EB',
           }}
           aria-label='Resend invitation'
         >
@@ -169,7 +158,8 @@ export default function InvitationSentConfirmation({
         className='confirmation-footer mt-6 text-center text-sm'
         style={{ color: 'var(--text-light)' }}
       >
-        You can always invite more partners or manage invitations from your dashboard.
+        You can always invite more partners or manage invitations from your
+        dashboard.
       </div>
     </div>
   );

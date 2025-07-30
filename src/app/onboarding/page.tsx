@@ -1,13 +1,17 @@
 'use client';
 
-import InvitePartnerPrompt from '@/app/components/InvitePartnerPrompt';
 import InvitationSentConfirmation from '@/app/components/InvitationSentConfirmation';
+import InvitePartnerPrompt from '@/app/components/InvitePartnerPrompt';
 import SignupForm from '@/app/components/SignupForm';
 import WelcomeScreen from '@/app/components/WelcomeScreen';
 import { useSearchParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
 
-type OnboardingStep = 'signup' | 'welcome' | 'invite-prompt' | 'invitation-sent';
+type OnboardingStep =
+  | 'signup'
+  | 'welcome'
+  | 'invite-prompt'
+  | 'invitation-sent';
 
 interface UserData {
   firstName: string;
@@ -47,7 +51,7 @@ export default function OnboardingPage() {
   const handleSendInvitation = (email: string) => {
     // TODO: Handle sending invitation to partner (API call)
     console.log('Sending invitation to:', email);
-    
+
     // Store the partner email and navigate to confirmation
     setPartnerEmail(email);
     setCurrentStep('invitation-sent');
