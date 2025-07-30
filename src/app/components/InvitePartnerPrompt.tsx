@@ -26,7 +26,7 @@ export default function InvitePartnerPrompt({
     setEmailError('');
 
     if (!email.trim()) {
-      setEmailError('Please enter your partner\'s email address');
+      setEmailError("Please enter your partner's email address");
       return;
     }
 
@@ -176,7 +176,10 @@ export default function InvitePartnerPrompt({
             disabled={isLoading}
           />
           {emailError && (
-            <p className='error-message text-sm mt-2' style={{ color: '#DC2626' }}>
+            <p
+              className='error-message text-sm mt-2'
+              style={{ color: '#DC2626' }}
+            >
               {emailError}
             </p>
           )}

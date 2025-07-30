@@ -1,12 +1,13 @@
 'use client';
 
 import InvitePartnerPrompt from '@/app/components/InvitePartnerPrompt';
+import InvitationSentConfirmation from '@/app/components/InvitationSentConfirmation';
 import SignupForm from '@/app/components/SignupForm';
 import WelcomeScreen from '@/app/components/WelcomeScreen';
 import { useSearchParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
 
-type OnboardingStep = 'signup' | 'welcome' | 'invite-prompt';
+type OnboardingStep = 'signup' | 'welcome' | 'invite-prompt' | 'invitation-sent';
 
 interface UserData {
   firstName: string;
@@ -16,6 +17,7 @@ interface UserData {
 export default function OnboardingPage() {
   const [currentStep, setCurrentStep] = useState<OnboardingStep>('welcome');
   const [userData, setUserData] = useState<UserData | null>(null);
+  const [partnerEmail, setPartnerEmail] = useState<string>('');
   const searchParams = useSearchParams();
 
   useEffect(() => {
@@ -43,15 +45,27 @@ export default function OnboardingPage() {
   };
 
   const handleSendInvitation = (email: string) => {
-    // TODO: Handle sending invitation to partner
+    // TODO: Handle sending invitation to partner (API call)
     console.log('Sending invitation to:', email);
-    // This will be replaced with actual API call later
-    // For now, simulate success and navigate to confirmation
+    
+    // Store the partner email and navigate to confirmation
+    setPartnerEmail(email);
+    setCurrentStep('invitation-sent');
   };
 
   const handleSkipInvitation = () => {
     // TODO: Navigate to dashboard or complete onboarding
     console.log('Skip invitation clicked - go to dashboard');
+  };
+
+  const handleResendInvitation = () => {
+    // TODO: Resend invitation API call
+    console.log('Resending invitation to:', partnerEmail);
+  };
+
+  const handleContinueToApp = () => {
+    // TODO: Navigate to main app/dashboard
+    console.log('Continue to app clicked');
   };
 
   return (
@@ -72,6 +86,14 @@ export default function OnboardingPage() {
           <InvitePartnerPrompt
             onSendInvitation={handleSendInvitation}
             onSkipForNow={handleSkipInvitation}
+          />
+        )}
+
+        {currentStep === 'invitation-sent' && (
+          <InvitationSentConfirmation
+            partnerEmail={partnerEmail}
+            onResendInvitation={handleResendInvitation}
+            onContinueToApp={handleContinueToApp}
           />
         )}
       </div>

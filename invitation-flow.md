@@ -18,37 +18,31 @@ This document outlines the complete partner invitation flow for the After Love a
 - **Outcome:** Partner 1 is guided to the invitation step
 - **Component:** `InvitePartnerPrompt`
 
-### 3. Enter Partner's Email
-
-- **Action:** Partner 1 enters their partner's email address and clicks "Send Invitation"
-- **Outcome:** Partner 1 inputs the necessary email
-- **Component:** `PartnerInviteForm`
-
-### 4. Send Invitation Email
+### 3. Send Invitation Email
 
 - **Action:** Application generates unique invitation link and sends email
 - **Outcome:** Invitation email sent, confirmation shown to Partner 1
 - **Component:** `InvitationSentConfirmation`
 
-### 5. Partner 2 Receives & Accepts Invitation
+### 4. Partner 2 Receives & Accepts Invitation
 
 - **Action:** Partner 2 clicks unique link in invitation email
 - **Outcome:** Partner 2 directed to "Join Partner" screen
 - **Component:** `AcceptInvitationForm`
 
-### 6. Partner 2 Onboarding/Account Creation
+### 5. Partner 2 Onboarding/Account Creation
 
 - **Action:** Partner 2 creates account or logs in
 - **Outcome:** Partner 2's account created/linked and logged in
 - **Component:** `AcceptInvitationForm`
 
-### 7. Confirmation of Connection
+### 6. Confirmation of Connection
 
 - **Action:** Both partners see connection confirmation
 - **Outcome:** Both partners aware of successful link
 - **Component:** `ConnectionSuccess`
 
-### 8. Joint Experience Begins
+### 7. Joint Experience Begins
 
 - **Action:** Both partners access shared app space
 - **Outcome:** Core couple functionality accessible
@@ -95,26 +89,6 @@ export default function InvitePartnerPrompt({
 ```
 
 ### 2. Invitation Components
-
-#### `PartnerInviteForm.tsx`
-
-```typescript
-'use client';
-
-interface PartnerInviteFormProps {
-  onSendInvitation: (email: string) => void;
-  isLoading?: boolean;
-}
-
-export default function PartnerInviteForm({
-  onSendInvitation,
-  isLoading,
-}: PartnerInviteFormProps) {
-  // Email input field and "Send Invitation" button
-  // Form validation for email
-  // Loading state handling
-}
-```
 
 #### `InvitationSentConfirmation.tsx`
 
