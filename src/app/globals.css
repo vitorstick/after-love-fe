@@ -51,14 +51,6 @@ body {
     padding: 0 0.5rem;
 }
 
-/* Hero Section Styles */
-.hero {
-  background: linear-gradient(180deg, var(--pastel-pink) 0%, var(--pastel-peach) 100%);
-  min-height: calc(100vh - 120px);
-  display: flex;
-  align-items: center;
-}
-
 /* Animation Classes */
 .animate-in {
   animation: slideInUp 0.8s ease-out forwards;

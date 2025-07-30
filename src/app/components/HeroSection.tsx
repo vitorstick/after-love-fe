@@ -2,7 +2,17 @@ import SignupForm from './SignupForm';
 
 export default function HeroSection() {
   return (
-    <section className='hero py-16 md:py-24' role='main'>
+    <section
+      className='hero py-16 md:py-24'
+      role='main'
+      style={{
+        background:
+          'linear-gradient(180deg, var(--pastel-pink) 0%, var(--pastel-peach) 100%)',
+        minHeight: 'calc(100vh - 120px)',
+        display: 'flex',
+        alignItems: 'center',
+      }}
+    >
       <div className='container max-w-[1200px] mx-auto px-5'>
         <div className='hero-grid grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center'>
           {/* Hero Content */}
