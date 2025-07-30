@@ -45,3 +45,57 @@ body {
     font-family: var(--font-crimson-text), serif;
   }
 }
+
+.highlight {
+    background: linear-gradient(180deg, transparent 60%, rgba(255, 143, 163, 0.3) 60%);
+    padding: 0 0.5rem;
+}
+
+/* Hero Section Styles */
+.hero {
+  background: linear-gradient(180deg, var(--pastel-pink) 0%, var(--pastel-peach) 100%);
+  min-height: calc(100vh - 120px);
+  display: flex;
+  align-items: center;
+}
+
+/* Animation Classes */
+.animate-in {
+  animation: slideInUp 0.8s ease-out forwards;
+  opacity: 0;
+  transform: translateY(30px);
+}
+
+.animate-in:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+@keyframes slideInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Form Styles */
+.form-input:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(255, 143, 163, 0.1);
+}
+
+.btn-primary:hover {
+  background-color: var(--primary-dark);
+}
+
+/* Responsive adjustments */
+@media (max-width: 1024px) {
+  .desktop-price {
+    display: none !important;
+  }
+}
+
+@media (min-width: 1024px) {
+  .mobile-cta-button {
+    display: none !important;
+  }
+}
