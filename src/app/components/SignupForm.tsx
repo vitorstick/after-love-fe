@@ -2,7 +2,11 @@
 
 import { useState } from 'react';
 
-export default function SignupForm() {
+interface SignupFormProps {
+  onSwitchToLogin?: () => void;
+}
+
+export default function SignupForm({ onSwitchToLogin }: SignupFormProps) {
   const [formData, setFormData] = useState({
     firstName: '',
     email: '',
