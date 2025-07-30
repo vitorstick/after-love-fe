@@ -42,9 +42,11 @@ export default function OnboardingPage() {
     setCurrentStep('invite-prompt');
   };
 
-  const handleInvitePartner = () => {
-    // TODO: Navigate to PartnerInviteForm step
-    console.log('Invite partner clicked - next: PartnerInviteForm');
+  const handleSendInvitation = (email: string) => {
+    // TODO: Handle sending invitation to partner
+    console.log('Sending invitation to:', email);
+    // This will be replaced with actual API call later
+    // For now, simulate success and navigate to confirmation
   };
 
   const handleSkipInvitation = () => {
@@ -68,7 +70,7 @@ export default function OnboardingPage() {
 
         {currentStep === 'invite-prompt' && (
           <InvitePartnerPrompt
-            onInvitePartner={handleInvitePartner}
+            onSendInvitation={handleSendInvitation}
             onSkipForNow={handleSkipInvitation}
           />
         )}

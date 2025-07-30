@@ -1,14 +1,42 @@
 'use client';
 
+import { useState } from 'react';
+
 interface InvitePartnerPromptProps {
-  onInvitePartner: () => void;
+  onSendInvitation: (email: string) => void;
   onSkipForNow: () => void;
+  isLoading?: boolean;
 }
 
 export default function InvitePartnerPrompt({
-  onInvitePartner,
+  onSendInvitation,
   onSkipForNow,
+  isLoading = false,
 }: InvitePartnerPromptProps) {
+  const [email, setEmail] = useState('');
+  const [emailError, setEmailError] = useState('');
+
+  const validateEmail = (email: string) => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+  };
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    setEmailError('');
+
+    if (!email.trim()) {
+      setEmailError('Please enter your partner\'s email address');
+      return;
+    }
+
+    if (!validateEmail(email)) {
+      setEmailError('Please enter a valid email address');
+      return;
+    }
+
+    onSendInvitation(email);
+  };
   return (
     <div className='invite-prompt-container animate-in' id='invite-prompt'>
       <div className='prompt-header text-center mb-8'>
@@ -125,14 +153,46 @@ export default function InvitePartnerPrompt({
         </div>
       </div>
 
+      <form onSubmit={handleSubmit} className='invite-form mb-8'>
+        <div className='form-group'>
+          <label
+            className='form-label block text-sm font-medium mb-2'
+            htmlFor='partnerEmail'
+            style={{ color: 'var(--text-dark)' }}
+          >
+            Your Partner&apos;s Email Address
+          </label>
+          <input
+            type='email'
+            id='partnerEmail'
+            name='partnerEmail'
+            className='form-input w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-500 focus:border-transparent'
+            placeholder='partner@example.com'
+            required
+            aria-required='true'
+            autoComplete='email'
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            disabled={isLoading}
+          />
+          {emailError && (
+            <p className='error-message text-sm mt-2' style={{ color: '#DC2626' }}>
+              {emailError}
+            </p>
+          )}
+        </div>
+      </form>
+
       <div className='prompt-actions space-y-4'>
         <button
-          onClick={onInvitePartner}
-          className='btn-primary w-full py-4 rounded-lg text-white font-medium text-lg transition-all duration-200 hover:opacity-90 hover:transform hover:scale-105'
+          type='submit'
+          onClick={handleSubmit}
+          disabled={isLoading}
+          className='btn-primary w-full py-4 rounded-lg text-white font-medium text-lg transition-all duration-200 hover:opacity-90 hover:transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none'
           style={{ backgroundColor: 'var(--primary)' }}
-          aria-label='Invite your partner'
+          aria-label='Send invitation to partner'
         >
-          Invite Your Partner
+          {isLoading ? 'Sending Invitation...' : 'Send Invitation'}
         </button>
 
         <button
