@@ -13,10 +13,7 @@ interface SignupFormProps {
   }) => void;
 }
 
-export default function SignupForm({
-  onSwitchToLogin,
-  onSignupSuccess,
-}: SignupFormProps) {
+export default function SignupForm({ onSignupSuccess }: SignupFormProps) {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -112,6 +109,7 @@ export default function SignupForm({
             value={formData.name}
             onChange={handleChange}
             disabled={isLoading}
+            suppressHydrationWarning
           />
         </div>
 
@@ -135,6 +133,7 @@ export default function SignupForm({
             value={formData.email}
             onChange={handleChange}
             disabled={isLoading}
+            suppressHydrationWarning
           />
         </div>
 
@@ -159,6 +158,7 @@ export default function SignupForm({
             value={formData.password}
             onChange={handleChange}
             disabled={isLoading}
+            suppressHydrationWarning
           />
         </div>
 
