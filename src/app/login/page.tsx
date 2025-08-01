@@ -14,13 +14,14 @@ export default function LoginPage() {
   };
 
   const handleSignupSuccess = (userData: {
-    firstName: string;
+    name: string;
     email: string;
+    token: string;
   }) => {
     console.log('User signed up successfully:', userData);
     // Navigate to onboarding page with user data
     const params = new URLSearchParams({
-      firstName: userData.firstName,
+      name: userData.name,
       email: userData.email,
     });
     router.push(`/onboarding?${params.toString()}`);
@@ -75,10 +76,7 @@ export default function LoginPage() {
           {activeTab === 'login' ? (
             <LoginForm onSwitchToSignup={() => switchTab('signup')} />
           ) : (
-            <SignupForm
-              onSwitchToLogin={() => switchTab('login')}
-              onSignupSuccess={handleSignupSuccess}
-            />
+            <SignupForm onSignupSuccess={handleSignupSuccess} />
           )}
         </div>
       </div>

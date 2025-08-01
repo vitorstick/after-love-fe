@@ -5,7 +5,6 @@ import { useState } from 'react';
 import { useAuth } from '../context/AuthContext';
 
 interface SignupFormProps {
-  onSwitchToLogin?: () => void;
   onSignupSuccess?: (userData: {
     name: string;
     email: string;
