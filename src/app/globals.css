@@ -91,3 +91,88 @@ body {
     display: none !important;
   }
 }
+
+/* Desires Page Specific Styles */
+.desires-page {
+  --desires-gradient: linear-gradient(135deg, var(--pastel-pink) 0%, #FFDDE6 100%);
+}
+
+/* Question Options */
+.option-button {
+  width: 100%;
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.75rem;
+  border: 2px solid #D1D5DB;
+  background-color: white;
+  color: #374151;
+  font-weight: 500;
+  transition: all 0.2s;
+}
+
+.option-button:hover {
+  border-color: var(--primary);
+  color: var(--primary);
+}
+
+.option-button.selected {
+  background-color: var(--primary);
+  border-color: var(--primary);
+  color: white;
+}
+
+/* Progress Bar */
+.progress-bar {
+  width: 100%;
+  background-color: #E5E7EB;
+  border-radius: 9999px;
+  height: 0.5rem;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  border-radius: 9999px;
+  transition: all 0.3s;
+  background-color: var(--primary);
+}
+
+/* Fade In Animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.6s ease-out;
+}
+
+/* Slide In Animation */
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.animate-slide-in {
+  animation: slideIn 0.4s ease-out;
+}
+
+/* Responsive Text */
+.responsive-heading {
+  font-size: clamp(2rem, 4vw, 3rem);
+}
+
+.responsive-subheading {
+  font-size: clamp(1.5rem, 3vw, 2.5rem);
+}

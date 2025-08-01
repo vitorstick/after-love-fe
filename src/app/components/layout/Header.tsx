@@ -1,10 +1,16 @@
 'use client';
 
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { useAuth } from '../../context/AuthContext';
 
 export default function Header() {
   const { user, isAuthenticated, logout } = useAuth();
+  const pathname = usePathname();
+
+  const isActive = (path: string) => {
+    return pathname === path;
+  };
 
   return (
     <header className='bg-white/90 backdrop-blur-[20px] z-[1000] py-6'>
@@ -25,43 +31,71 @@ export default function Header() {
         <div className='hidden md:flex items-center justify-center space-x-8'>
           <Link
             href='/'
-            className='text-pink-400 hover:text-pink-500 text-sm font-medium border-b-2 border-pink-400 pb-4'
+            className={`text-sm font-medium pb-4 ${
+              isActive('/')
+                ? 'text-pink-400 hover:text-pink-500 border-b-2 border-pink-400'
+                : 'text-gray-600 hover:text-gray-900'
+            }`}
           >
             Home
           </Link>
           <Link
             href='/desires'
-            className='text-gray-600 hover:text-gray-900 text-sm font-medium pb-4'
+            className={`text-sm font-medium pb-4 ${
+              isActive('/desires')
+                ? 'text-pink-400 hover:text-pink-500 border-b-2 border-pink-400'
+                : 'text-gray-600 hover:text-gray-900'
+            }`}
           >
             Desires
           </Link>
           <Link
             href='/afterglow'
-            className='text-gray-600 hover:text-gray-900 text-sm font-medium pb-4'
+            className={`text-sm font-medium pb-4 ${
+              isActive('/afterglow')
+                ? 'text-pink-400 hover:text-pink-500 border-b-2 border-pink-400'
+                : 'text-gray-600 hover:text-gray-900'
+            }`}
           >
             Afterglow
           </Link>
           <Link
             href='/real-talk'
-            className='text-gray-600 hover:text-gray-900 text-sm font-medium pb-4'
+            className={`text-sm font-medium pb-4 ${
+              isActive('/real-talk')
+                ? 'text-pink-400 hover:text-pink-500 border-b-2 border-pink-400'
+                : 'text-gray-600 hover:text-gray-900'
+            }`}
           >
             Real Talk
           </Link>
           <Link
             href='/pricing'
-            className='text-gray-600 hover:text-gray-900 text-sm font-medium pb-4'
+            className={`text-sm font-medium pb-4 ${
+              isActive('/pricing')
+                ? 'text-pink-400 hover:text-pink-500 border-b-2 border-pink-400'
+                : 'text-gray-600 hover:text-gray-900'
+            }`}
           >
             Pricing
           </Link>
           <Link
             href='/faq'
-            className='text-gray-600 hover:text-gray-900 text-sm font-medium pb-4'
+            className={`text-sm font-medium pb-4 ${
+              isActive('/faq')
+                ? 'text-pink-400 hover:text-pink-500 border-b-2 border-pink-400'
+                : 'text-gray-600 hover:text-gray-900'
+            }`}
           >
             FAQ
           </Link>
           <Link
             href='/contact'
-            className='text-gray-600 hover:text-gray-900 text-sm font-medium pb-4'
+            className={`text-sm font-medium pb-4 ${
+              isActive('/contact')
+                ? 'text-pink-400 hover:text-pink-500 border-b-2 border-pink-400'
+                : 'text-gray-600 hover:text-gray-900'
+            }`}
           >
             Contact
           </Link>
@@ -71,7 +105,11 @@ export default function Header() {
             <div className='flex items-center space-x-4'>
               <Link
                 href='/dashboard'
-                className='text-gray-600 hover:text-gray-900 text-sm font-medium pb-4'
+                className={`text-sm font-medium pb-4 ${
+                  isActive('/dashboard')
+                    ? 'text-pink-400 hover:text-pink-500 border-b-2 border-pink-400'
+                    : 'text-gray-600 hover:text-gray-900'
+                }`}
               >
                 Dashboard
               </Link>
