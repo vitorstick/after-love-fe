@@ -74,7 +74,7 @@ export default function LoginPage() {
         {/* Tab Content */}
         <div className='tab-content'>
           {activeTab === 'login' ? (
-            <LoginForm onSwitchToSignup={() => switchTab('signup')} />
+            <LoginForm />
           ) : (
             <SignupForm onSignupSuccess={handleSignupSuccess} />
           )}

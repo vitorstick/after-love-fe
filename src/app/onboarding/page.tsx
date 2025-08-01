@@ -5,7 +5,7 @@ import InvitePartnerPrompt from '@/app/components/InvitePartnerPrompt';
 import SignupForm from '@/app/components/SignupForm';
 import WelcomeScreen from '@/app/components/WelcomeScreen';
 import { useRouter, useSearchParams } from 'next/navigation';
-import { useEffect, useState } from 'react';
+import { Suspense, useEffect, useState } from 'react';
 
 type OnboardingStep =
   | 'signup'
@@ -14,11 +14,12 @@ type OnboardingStep =
   | 'invitation-sent';
 
 interface UserData {
-  firstName: string;
+  name: string;
   email: string;
+  token: string;
 }
 
-export default function OnboardingPage() {
+function OnboardingContent() {
   const [currentStep, setCurrentStep] = useState<OnboardingStep>('welcome');
   const [userData, setUserData] = useState<UserData | null>(null);
   const [partnerEmail, setPartnerEmail] = useState<string>('');
@@ -27,11 +28,11 @@ export default function OnboardingPage() {
 
   useEffect(() => {
     // Try to get user data from URL params first
-    const firstName = searchParams.get('firstName');
+    const name = searchParams.get('name');
     const email = searchParams.get('email');
 
-    if (firstName && email) {
-      setUserData({ firstName, email });
+    if (name && email) {
+      setUserData({ name, email, token: '' });
       setCurrentStep('welcome');
     } else {
       // Fallback to signup flow if no user data
@@ -82,7 +83,7 @@ export default function OnboardingPage() {
 
         {currentStep === 'welcome' && userData && (
           <WelcomeScreen
-            userName={userData.firstName}
+            userName={userData.name}
             onContinue={handleWelcomeContinue}
           />
         )}
@@ -103,5 +104,19 @@ export default function OnboardingPage() {
         )}
       </div>
     </div>
+  );
+}
+
+export default function OnboardingPage() {
+  return (
+    <Suspense
+      fallback={
+        <div className='min-h-screen flex items-center justify-center'>
+          Loading...
+        </div>
+      }
+    >
+      <OnboardingContent />
+    </Suspense>
   );
 }

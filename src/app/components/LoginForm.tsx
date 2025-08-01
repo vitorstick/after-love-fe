@@ -5,14 +5,10 @@ import { useState } from 'react';
 import { useAuth } from '../context/AuthContext';
 
 interface LoginFormProps {
-  onSwitchToSignup: () => void;
   onLoginSuccess?: () => void;
 }
 
-export default function LoginForm({
-  onSwitchToSignup,
-  onLoginSuccess,
-}: LoginFormProps) {
+export default function LoginForm({ onLoginSuccess }: LoginFormProps) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [rememberMe, setRememberMe] = useState(false);
